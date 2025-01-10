@@ -1,37 +1,88 @@
 package com.foro.ForoHub.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Getter
+@Setter
+@Entity(name = "Topic")
+@Table(name="topics")
 public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
     private String title;
-
-    @Column(nullable = false)
     private String message;
+    private LocalDateTime creationDate;
+    private String status;
 
-    @Column(nullable = false)
-    private LocalDate creationDate = LocalDate.now();
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private User author;
 
-    @Column(nullable = false)
-    private String status = "OPEN";
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
 
-    @Column(nullable = false)
-    private String author;
+    public Long getId() {
+        return id;
+    }
 
-    @Column(nullable = false)
-    private String course;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 }
