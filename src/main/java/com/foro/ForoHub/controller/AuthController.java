@@ -6,12 +6,17 @@ import com.foro.ForoHub.entity.User;
 import com.foro.ForoHub.repository.AuthDataRepository;
 import com.foro.ForoHub.repository.UserRepository;
 import com.foro.ForoHub.service.TokenService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
@@ -34,22 +39,29 @@ public class AuthController {
 
     // Endpoint para iniciar sesión
     @PostMapping("/login")
-    public String login(@RequestBody RegisterRequest registerRequest) {
-        // Autenticar al usuario
+    public ResponseEntity<Map<String, String>> login(@RequestBody @Valid RegisterRequest registerRequest) {
         try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
+            // Intentar autenticar al usuario con las credenciales proporcionadas
+            Authentication authentication = new UsernamePasswordAuthenticationToken(
                             registerRequest.getUsername(),
-                            registerRequest.getPassword()
-                    )
-            );
+                            registerRequest.getPassword());
 
-            // Generar un token JWT
+            // Si la autenticación es exitosa, generar el token JWT
             String token = tokenService.generateToken(registerRequest.getUsername());
-            return "Bearer " + token;
-        }catch (Exception e) {
+
+            // Crear el mapa con el token
+            Map<String, String> response = new HashMap<>();
+            response.put("token", "Bearer " + token);
+
+            // Retornar el token en formato JSON
+            return ResponseEntity.ok(response);
+
+        } catch (Exception e) {
+            // En caso de error, imprimir el stack trace y retornar un mensaje adecuado
             e.printStackTrace();
-            return "Authentication failed: " + e.getMessage();
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("error", "Credenciales incorrectas o error en la autenticación");
+            return ResponseEntity.badRequest().body(errorResponse);
         }
     }
 
