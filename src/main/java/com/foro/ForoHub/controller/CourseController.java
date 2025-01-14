@@ -1,10 +1,13 @@
 package com.foro.ForoHub.controller;
 
 import com.foro.ForoHub.entity.Course;
+import com.foro.ForoHub.entity.User;
 import com.foro.ForoHub.service.CourseService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/courses")
@@ -22,4 +25,5 @@ public class CourseController {
     public Course createCourse(@RequestBody @Valid Course course) {
         return courseService.createCourse(course);
     }
+
 }

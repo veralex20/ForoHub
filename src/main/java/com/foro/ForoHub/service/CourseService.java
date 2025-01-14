@@ -1,8 +1,11 @@
 package com.foro.ForoHub.service;
 
 import com.foro.ForoHub.entity.Course;
+import com.foro.ForoHub.entity.User;
 import com.foro.ForoHub.repository.CourseRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CourseService {
@@ -17,4 +20,5 @@ public class CourseService {
     public Course createCourse(Course course) {
         return courseRepository.save(course);
     }
+
 }
