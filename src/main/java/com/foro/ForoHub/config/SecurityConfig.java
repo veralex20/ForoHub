@@ -32,7 +32,11 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers(HttpMethod.POST, "/auth/login").permitAll() // Permite acceso a estas rutas
-                                .requestMatchers("/topics/**").permitAll() // Permite acceso sin autenticación a /topics
+                                .requestMatchers(
+                                        "/swagger-ui/**",
+                                        "/v3/api-docs/**",
+                                        "/v3/api-docs.yaml"
+                                ).permitAll()
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(tokenService), UsernamePasswordAuthenticationFilter.class) // Asegura que el filtro JWT se ejecute

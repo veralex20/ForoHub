@@ -74,7 +74,7 @@ public class TopicService {
             Topic updatedTopic = existingTopic.get();
             updatedTopic.setTitle(topic.getTitle());
             updatedTopic.setMessage(topic.getMessage());
-//            updatedTopic.setCreationDate(topic.getCreationDate());
+            updatedTopic.setCreationDate(topic.getCreationDate());
             updatedTopic.setStatus(topic.getStatus());
             updatedTopic.setAuthor(topic.getAuthor());
             updatedTopic.setCourse(topic.getCourse());
