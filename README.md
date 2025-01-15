@@ -96,4 +96,4 @@ La documentación de la API está disponible en:
 
 ## Autor
 
-Desarrollado por **Alexis**.
+Desarrollado por **Alexis**. Principiante en el mundo de la programación.
