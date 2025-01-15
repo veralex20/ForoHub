@@ -94,12 +94,6 @@ La documentación de la API está disponible en:
 
 ---
 
-## Capturas de Pantalla
-
-<inserta capturas de Swagger UI o ejemplos de uso de la API si lo deseas>
-
----
-
 ## Autor
 
 Desarrollado por **Alexis**.
