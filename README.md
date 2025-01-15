@@ -67,11 +67,14 @@ Foro Hub es una **API RESTful** desarrollada en **Java 17+** con **Spring Boot**
 
 | Método | Endpoint               | Descripción                           |
 |--------|------------------------|---------------------------------------|
-| GET    | `/api/topics`          | Lista todos los tópicos.             |
-| POST   | `/api/topics`          | Crea un nuevo tópico.                |
-| GET    | `/api/topics/{id}`     | Obtiene un tópico por su ID.         |
-| PUT    | `/api/topics/{id}`     | Actualiza un tópico existente.       |
-| DELETE | `/api/topics/{id}`     | Elimina un tópico.                   |
+| GET    | `/api/topics`          | Lista todos los tópicos.              |
+| POST   | `/api/topics`          | Crea un nuevo tópico.                 |
+| GET    | `/api/topics/{id}`     | Obtiene un tópico por su ID.          |
+| PUT    | `/api/topics/{id}`     | Actualiza un tópico existente.        |
+| DELETE | `/api/topics/{id}`     | Elimina un tópico.                    |
+| GET    | `/users`               | Lista todos los autores.              |
+| POST   | `/auth/register`       | Crea un nuevo autor.                  |
+| POST   | `/courses`             | Crea un nuevo curso.                  |
 
 ---
 
