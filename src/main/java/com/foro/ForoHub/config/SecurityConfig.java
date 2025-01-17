@@ -36,6 +36,7 @@ public class SecurityConfig {
                                 .requestMatchers("/swagger-ui/**").anonymous()
                                 .requestMatchers("/v3/api-docs/**").permitAll()
                                 .requestMatchers("/v3/api-docs.yaml").permitAll()
+                                .requestMatchers("/topics").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(tokenService), UsernamePasswordAuthenticationFilter.class) // Asegura que el filtro JWT se ejecute
